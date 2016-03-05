@@ -29,6 +29,25 @@ An instance of the `Rnow::Connection` class is necessary:
 
     connection = Rnow::Connection.new(username: '', password: '', host: '')
 
+## Development / testing
+
+Clone:
+```
+$ git clone https://github.com/seizadi/rnow.git
+```
+
+Bundle: 
+```
+$ bundle install
+```
+
+Make changes and add additional test suite as needed.
+
+Run the tests: 
+```
+$ rspec
+```
+
 ## References
 
 Oracle RightNow REST interface documented here:

@@ -4,6 +4,7 @@ require 'faraday'
 require 'faraday_middleware'
 require 'openssl'
 require "rnow/version"
+require "rnow/connection"
 
 module Rnow
   DEBUG        = ENV['DEBUG']

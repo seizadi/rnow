@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "rnow"
   spec.version       = Rnow::VERSION
   spec.authors       = ["Soheil Eizadi"]
-  spec.email         = ["seizadi@infoblox.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.email         = ["seizadi@gmail.com"]
+  spec.summary       = %q{Ruby wrapper for Oracle RightNow REST API}
+  spec.description   = %q{Ruby Gem for Oracle RightNow REST interface, was available with version 15.05 (May 2015). Use this gem to list, create, and delete RightNow organizations, contacts and incdents.}
+  spec.homepage      = "https://github.com/seizadi/rnow"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -20,4 +20,8 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_development_dependency "rspec", "~> 3.4.0"
+
+  spec.add_runtime_dependency "faraday", "~> 0.9.2"
+  spec.add_runtime_dependency "faraday_middleware", "~> 0.10.0"
 end

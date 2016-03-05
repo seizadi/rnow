@@ -86,7 +86,7 @@ module Rnow
     def wrap
       yield.tap do |response|
         unless response.status < 300
-          raise Infoblox::Error.new("Error: #{response.status} #{response.body}")
+          raise Rnow::Error.new("Error: #{response.status} #{response.body}")
         end
       end
     end
