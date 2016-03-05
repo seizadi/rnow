@@ -1,6 +1,6 @@
-# Rnow
+# RNow
 
-TODO: Write a gem description
+Interact with the Oracle RightNow REST interface with Ruby.  Use this gem to list, create, and delete RightNow organizations, contacts and incdents. The Orcale RightNow REST Interface was available with version 15.05 (May 2015).
 
 ## Installation
 
@@ -12,15 +12,27 @@ gem 'rnow'
 
 And then execute:
 
+```
     $ bundle
+```
 
 Or install it yourself as:
 
+```
     $ gem install rnow
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+### Connecting
+An instance of the `Rnow::Connection` class is necessary:
+
+    connection = Rnow::Connection.new(username: '', password: '', host: '')
+
+## References
+
+Oracle RightNow REST interface documented here:
+http://documentation.custhelp.com/euf/assets/devdocs/august2015/Connect_REST_API/wwhelp/wwhimpl/js/html/wwhelp.htm#href=Connect_REST_API.1.01.html
 
 ## Contributing
 
