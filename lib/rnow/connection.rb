@@ -2,6 +2,16 @@ module Rnow
   class Error < StandardError
   end
 
+  class ClearTextEncoder
+    def self.encode(params)
+      buffer = ''
+      params.each do |key, value|
+        buffer << "#{key}=#{value}&"
+      end
+      return buffer.chop
+    end
+  end
+
   class Connection
     attr_accessor :adapter,
                   :adapter_block,
@@ -56,6 +66,7 @@ module Rnow
         faraday.request :json
         faraday.basic_auth(self.username, self.password)
         faraday.adapter(self.adapter, &self.adapter_block)
+        faraday.options.params_encoder = Rnow::ClearTextEncoder # Used for ROQL encoding 
       end
     end
 

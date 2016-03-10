@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "faraday", "~> 0.9.2"
   spec.add_runtime_dependency "faraday_middleware", "~> 0.10.0"
+  spec.add_runtime_dependency "jsonapi-serializers", "~> 0.6.4"
 end

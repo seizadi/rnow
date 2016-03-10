@@ -30,7 +30,7 @@ describe Rnow::Connection do
 
     ic               = Rnow::Connection.new(conn_params)
     ic.adapter       = :test
-    ic.adapter_block = stub_get(uri, 404)
+    ic.adapter_block = stub_get(uri, 401)
 
     # execute the request. There should be no "URI::BadURIError: both URI are relative" error
 

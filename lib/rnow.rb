@@ -5,6 +5,11 @@ require 'faraday_middleware'
 require 'openssl'
 require "rnow/version"
 require "rnow/connection"
+require "rnow/resource"
+# Require everything in the resources directory
+Dir[File.expand_path('../rnow/resources/*.rb', __FILE__)].each do |f|
+  require f
+end
 
 module Rnow
   DEBUG        = ENV['DEBUG']
@@ -20,7 +25,7 @@ module Rnow
   module_function :rnow_version=
   
   def base_path
-  	'services/rest/connect/v' + Infoblox.wapi_version + '/'
+  	'services/rest/connect/v' + Rnow.rnow_version + '/'
   end
   module_function :base_path
 end
