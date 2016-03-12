@@ -86,7 +86,6 @@ module Rnow
     #
     def self.all(connection, params = {})
       JSON.parse(connection.get(resource_uri, params).body)["items"].map do |item|
-        debugger
         href = item.delete("links").first["href"]
         new(item.merge({href: href, connection: connection}))
       end

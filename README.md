@@ -72,6 +72,11 @@ Run the tests:
 ```
 $ rspec
 ```
+## Publish
+```
+$ rake build
+$ gem push 
+```
 
 ## References
 
