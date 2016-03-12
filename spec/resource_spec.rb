@@ -40,6 +40,13 @@ describe Rnow::Resource do
     expect(FooResource.all(conn)).to eq([])
   end
 
+  it "proxy should return the JSON response" do
+    conn = double
+    uri = Rnow.base_path + "foo:animal"
+    allow(conn).to receive(:get).with(uri,{}).and_return(FooResponse.new("{\"items\": []}"))
+    expect(FooResource.all(conn, {proxy: true})).to eq("{\"items\": []}")
+  end
+
   it "should allow .all with return fields or max results" do
     conn = double
     uri = Rnow.base_path + "queryResults"

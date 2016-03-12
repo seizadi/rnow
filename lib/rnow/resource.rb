@@ -84,10 +84,16 @@ module Rnow
     # retreive what you need.
     # See self.paginate() for paganition, see self.find() for search support.
     #
-    def self.all(connection, params = {})
-      JSON.parse(connection.get(resource_uri, params).body)["items"].map do |item|
-        href = item.delete("links").first["href"]
-        new(item.merge({href: href, connection: connection}))
+    def self.all(connection, params = {proxy: false})
+      proxy = params.delete(:proxy)
+      response = connection.get(resource_uri, params).body
+      if proxy
+        return response
+      else
+        JSON.parse(response)["items"].map do |item|
+          href = item.delete("links").first["href"]
+          new(item.merge({href: href, connection: connection}))
+        end
       end
     end
 
