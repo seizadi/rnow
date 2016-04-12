@@ -125,13 +125,19 @@ module Rnow
     #
     # Example: Rnow::Contact.find(connection, "lookupName", "Soheil Eizadi")
     #
-    def self.find(connection, params = {key: nil, value: nil})
+    def self.find(connection, params = {key: nil, value: nil, proxy: false})
       key = params.delete(:key)
       value = params.delete(:value)
+      proxy = params.delete(:proxy)
       search = (value.is_a? Integer) ? value : "'#{value}'"
-      JSON.parse(connection.get(resource_uri, {q: "#{key}=#{search}"}).body)["items"].map do |item|
-        href = item.delete("links").first["href"]
-        new(item.merge({href: href, connection: connection}))
+      response = connection.get(resource_uri, {q: "#{key}=#{search}"}).body
+      if proxy
+        return response
+      else      
+        JSON.parse(response)["items"].map do |item|
+          href = item.delete("links").first["href"]
+          new(item.merge({href: href, connection: connection}))
+        end
       end
     end
 
