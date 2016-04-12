@@ -168,14 +168,20 @@ module Rnow
     # Typical query patter is:
     # uri = "services/rest/connect/latest/contacts?q=lookupName like '%Soheil%'"
     #
-    # Example: Rnow::Contact.filter(connection, "lookupName", "Soheil Eizadi")
+    # Example: Rnow::Contact.search(connection, "lookupName", "Soheil Eizadi")
     #
-    def self.filter(connection, params = {key: nil, value: nil})
+    def self.search(connection, params = {key: nil, value: nil, proxy: false})
       key = params.delete(:key)
       value = params.delete(:value)
-      JSON.parse(connection.get(resource_uri, {q: "#{key} like '%#{value}%'"}).body)["items"].map do |item|
-        href = item.fetch("links").first["href"]
-        new(item.merge({href: href, connection: connection}))
+      proxy = params.delete(:proxy)
+      response = connection.get(resource_uri, {q: "#{key} like '%#{value}%'"}).body
+      if proxy
+        return response
+      else   
+        JSON.parse(response)["items"].map do |item|
+          href = item.fetch("links").first["href"]
+          new(item.merge({href: href, connection: connection}))
+        end
       end
     end
 
