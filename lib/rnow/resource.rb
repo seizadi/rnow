@@ -204,7 +204,7 @@ module Rnow
     def post
       resource = JSON.parse(connection.post(resource_uri, remote_attribute_hash(write = true, post = true)).body)
       self.href = resource.fetch("links").first["href"]
-      true
+      resource
     end
     alias_method :create, :post
 
